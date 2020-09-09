@@ -3,7 +3,7 @@ package com.demo;
 import com.demo.treetest.TomTree;
 
 public class RunClass {
-    public static void main(String []args) throws Exception{
+    public static void main(String []args){
         showTreeFirst();
         System.out.print("\t先序遍历\n");
         showTreeMid();
@@ -12,6 +12,7 @@ public class RunClass {
         System.out.print("\t后序遍历\n");
         showTreeLevel();
         System.out.print("\t广度遍历\n");
+
     }
 
 

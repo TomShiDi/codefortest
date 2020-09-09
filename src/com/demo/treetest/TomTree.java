@@ -185,14 +185,14 @@ public class TomTree {
     /**
      * 定义节点数据结构
      */
-    class Node {
+    public static class Node {
         private Node left;
 
         private Node right;
 
         private int value;
 
-        Node(int value) {
+        public Node(int value) {
             this.value = value;
         }
 
