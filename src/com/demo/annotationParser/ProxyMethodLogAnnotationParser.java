@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ProxyMethodLogAnnotationParser implements AnnotationParserMeta,MethodInterceptor {
+public class ProxyMethodLogAnnotationParser implements AnnotationParserMeta, MethodInterceptor {
 
     private Set<Class<?>> candidateClassSet;
 
