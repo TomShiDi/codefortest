@@ -56,8 +56,9 @@
     <build>
         <resources>
             <resource>
+                <directory>src</directory>
                 <includes>
-                    <include>src/**/*.*</include>
+                    <include>**/*.*</include>
                 </includes>
             </resource>
         </resources>
