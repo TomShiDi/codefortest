@@ -11,7 +11,7 @@ import java.util.Iterator;
 public class HashSetMain {
     public static void main(String[] args) {
         // 创建HashSet对象
-        HashSet<HashSetMain.Person> hs = new HashSet<>();
+        HashSet<Person> hs = new HashSet<>();
         // 将Person对象存入集合
         hs.add(new Person("lisa", 21));
         hs.add(new Person("lisi", 32));
