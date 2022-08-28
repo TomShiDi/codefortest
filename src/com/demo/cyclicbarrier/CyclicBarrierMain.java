@@ -4,6 +4,7 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 /**
+ * 等待线程数达到设定值后，所有线程同时唤醒
  * @author TomShiDi
  * @description
  * @date 2021/10/4 14:54
