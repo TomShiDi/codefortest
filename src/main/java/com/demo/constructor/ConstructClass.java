@@ -1,6 +1,5 @@
 package com.demo.constructor;
 
-import com.sun.istack.internal.Nullable;
 
 import java.lang.reflect.Constructor;
 
@@ -38,7 +37,7 @@ public class ConstructClass {
 
     public static Object getInstanceByConstructor(String className) {
         ClassLoader classLoader = getClassLoader();
-        @Nullable Class<?> creature = null;
+        Class<?> creature = null;
         Constructor<?> constructor = null;
         try {
             creature = classLoader.loadClass(className);
