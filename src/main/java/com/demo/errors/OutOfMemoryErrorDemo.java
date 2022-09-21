@@ -2,16 +2,22 @@ package com.demo.errors;
 
 
 
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.MethodProxy;
+
+import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * OOM异常
  */
 public class OutOfMemoryErrorDemo {
     public static void main(String[] args) {
-
+        oomMetaspace();
     }
 
     /**
@@ -57,6 +63,45 @@ public class OutOfMemoryErrorDemo {
             }
         } catch (Throwable throwable) {
             System.out.println("list中的ByteBuffer元素个数：" + byteBufferList.size());
+            throwable.printStackTrace();
+        }
+    }
+
+    /**
+     * 无法再创建线程
+     * 在Linux下验证
+     */
+    public static void unableCreateNativeThread() {
+        for (int i = 1; ; i++) {
+            new Thread(() -> {
+                try {
+                    TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }, "线程" + i).start();
+        }
+    }
+
+    /**
+     * 元空间溢出
+     * -XX:MetaspaceSize=8M -XX:MaxMetaspaceSize=10M
+     */
+    public static void oomMetaspace() {
+        try {
+            while (true) {
+                Enhancer enhancer = new Enhancer();
+                enhancer.setSuperclass(OutOfMemoryErrorDemo.class);
+                enhancer.setUseCache(false);
+                enhancer.setCallback(new MethodInterceptor() {
+                    @Override
+                    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+                        return methodProxy.invokeSuper(o, objects);
+                    }
+                });
+                enhancer.create();
+            }
+        } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
     }
